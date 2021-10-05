@@ -1,0 +1,50 @@
+// Header Styles 
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2002;
+    background-color: teal;
+    box-shadow: 0 3px 3px rgba($color: #000000, $alpha: .4);
+}
+
+.header .container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.nav__list {
+    display: flex;
+    @include resetList;
+}
+
+.nav__item + .nav__item {
+    margin-left: 30px;
+}
+
+.nav__link {
+    font-weight: 600;
+    letter-spacing: .8px;
+    color: #fff;
+    transition: all 0.3s ease;
+
+    &:hover {
+        color: rgb(27, 46, 43);
+    }
+
+    &:active {
+        opacity: .4;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .header .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

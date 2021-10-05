@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Films Web Site</title>
+</head>
+<body>
+    
+    <!-- ====== Header ====== -->
+    <header class="header">
+        
+        <div class="container">
+            
+            <a class="logo__link" href="./index.html">
+                <img class="logo" src="./img/logo.svg" alt="Logo">
+            </a>
+
+            <div class="hamburger__menu">
+                <span class="hamburger__icon"></span>
+                <span class="hamburger__icon"></span>
+                <span class="hamburger__icon"></span>
+            </div>
+            
+            <nav class="nav">
+                
+                <ul class="nav__list">
+                    
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Home</a>
+                    </li>
+                    
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Portfolio</a>
+                    </li>
+                    
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Blog</a>
+                    </li>
+                    
+                    <li class="nav__item">
+                        <a href="#" class="nav__link">Contact</a>
+                    </li>
+                    
+                </ul>
+                
+            </nav>
+            
+        </div>
+        
+    </header>
+    <!-- ====== / Header ====== -->
+    
+    <!-- ===== Main ===== -->
+    <main class="main">
+        
+        <!-- ===== Main search section ===== -->
+        <section class="main-search">
+            
+            <div class="container">
+
+                <!-- Search form -->
+                <form class="form">
+                    
+                    <select class="form__genre-select">
+                        <option value="All">All</option>
+                    </select>
+                    <input class="form__search" type="search" placeholder="Search ...">
+                    <select class="form__letter-select">
+                        <option value="0">A - Z</option>
+                        <option value="1">Z - A</option>
+                        <option value="2">New - Old</option>
+                        <option value="3">Old - New</option>
+                    </select>
+                    <button class="form__btn">Submit</button>
+                    
+                </form>
+                
+            </div>
+            
+        </section>
+        <!-- ===== Main search section ===== -->
+
+        <!-- ===== Mian films section ===== -->
+        <section class="main-films">
+
+            <div class="container">
+
+                <ul class="films__list"></ul>
+
+            </div>
+        </section>
+        <!-- ===== / Mian films section ===== -->
+
+        
+    </main>
+    <!-- ===== / Main ===== -->
+    
+    <!-- Script links -->
+    <script src="./js/films.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
