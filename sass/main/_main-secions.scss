@@ -1,7 +1,11 @@
 // Main Styles
+
 .main .container {
     background-color: #fff;
 }
+
+// Main Search Section Style
+
 .main-search .container {
     padding-top: 30px;  
     padding-bottom: 10px;
@@ -30,6 +34,14 @@
         outline: none;
         box-shadow: 0 0 6px 2px rgb(36, 133, 212);
     }
+}
+
+.form__btn--animation {
+    color: #fff;
+    animation-name: btn-animation;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 // Main Films Section Styles
@@ -96,6 +108,28 @@
     color: rgb(93, 150, 33);
 }
 
+@keyframes btn-animation {
+    0% {
+        background-color: rgb(14, 15, 14);
+        color: orange;
+    }
+
+    25% {
+        background-color: orange;
+        color: black;
+    }
+
+    50% {
+        background-color: rgb(67, 182, 102);
+        color: brown;
+    }
+
+    100% {
+        background-color: rgb(11, 61, 85);
+        color: #fff;
+    }
+}
+
 @media only screen and (max-width: 1200px) {
     .film__item {
         max-width: 280px;
@@ -142,7 +176,7 @@
 }
 
 @media only screen and (max-width: 440px) {
-    body, .header {
+    .header {
         padding-left: 20px;
         padding-right: 20px;
     }

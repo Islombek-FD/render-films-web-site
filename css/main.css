@@ -151,15 +151,15 @@ a {
     padding-left: 0;
     padding-right: 0;
   }
-}
-
-@media only screen and (max-width: 700px) {
   .nav__list {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    display: block;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     -webkit-transform-origin: top;
             transform-origin: top;
     -webkit-transform: scaleY(0);
@@ -175,6 +175,9 @@ a {
   }
   .nav__link:hover {
     color: orange;
+  }
+  .nav__link:active {
+    opacity: .6;
   }
   .open__menu + .nav .nav__list {
     -webkit-transform: scaleY(1);
@@ -208,10 +211,6 @@ a {
     -webkit-transition: all .4s ease;
     transition: all .4s ease;
   }
-  .hamburger__icon:nth-child(2) {
-    -webkit-transition: all .2s ease;
-    transition: all .2s ease;
-  }
   .hamburger__icon + .hamburger__icon {
     margin-top: 6px;
   }
@@ -220,8 +219,7 @@ a {
             transform: rotate(45deg) translate(6px, 7px);
   }
   .open__menu .hamburger__icon:nth-child(2) {
-    visibility: hidden;
-    opacity: 0;
+    width: 5px;
   }
   .open__menu .hamburger__icon:nth-child(3) {
     -webkit-transform: rotate(-45deg) translate(8px, -7px);
@@ -271,6 +269,18 @@ a {
   outline: none;
   -webkit-box-shadow: 0 0 6px 2px #2485d4;
           box-shadow: 0 0 6px 2px #2485d4;
+}
+
+.form__btn--animation {
+  color: #fff;
+  -webkit-animation-name: btn-animation;
+          animation-name: btn-animation;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
 }
 
 .main-films .container {
@@ -346,6 +356,44 @@ a {
   color: #5d9621;
 }
 
+@-webkit-keyframes btn-animation {
+  0% {
+    background-color: #0e0f0e;
+    color: orange;
+  }
+  25% {
+    background-color: orange;
+    color: black;
+  }
+  50% {
+    background-color: #43b666;
+    color: brown;
+  }
+  100% {
+    background-color: #0b3d55;
+    color: #fff;
+  }
+}
+
+@keyframes btn-animation {
+  0% {
+    background-color: #0e0f0e;
+    color: orange;
+  }
+  25% {
+    background-color: orange;
+    color: black;
+  }
+  50% {
+    background-color: #43b666;
+    color: brown;
+  }
+  100% {
+    background-color: #0b3d55;
+    color: #fff;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   .film__item {
     max-width: 280px;
@@ -388,7 +436,7 @@ a {
 }
 
 @media only screen and (max-width: 440px) {
-  body, .header {
+  .header {
     padding-left: 20px;
     padding-right: 20px;
   }

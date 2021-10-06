@@ -1,10 +1,10 @@
 const elForm = document.querySelector('.form'),
-elGenreSelect = document.querySelector('.form__genre-select'),
-elTitleSearch = document.querySelector('.form__search'),
-elSortSelect = document.querySelector('.form__letter-select'),
-elFormBtn = document.querySelector('.form__btn'),
-elFilmList = document.querySelector('.films__list'),
-elHamburgerMenu = document.querySelector('.hamburger__menu');
+    elGenreSelect = document.querySelector('.form__genre-select'),
+    elTitleSearch = document.querySelector('.form__search'),
+    elSortSelect = document.querySelector('.form__letter-select'),
+    elFormBtn = document.querySelector('.form__btn'),
+    elFilmList = document.querySelector('.films__list'),
+    elHamburgerMenu = document.querySelector('.hamburger__menu');
 
 function normalizeDate(format) {
     const date = new Date(format),
@@ -13,6 +13,18 @@ function normalizeDate(format) {
     day = String(date.getDate()).padStart(2, 0);
     return `${day}.${month}.${year}`;
 }
+
+let elOpenMenu = false;
+elHamburgerMenu.addEventListener('click', () => {
+    if (!elOpenMenu) {
+        elHamburgerMenu.classList.add('open__menu');
+        elOpenMenu = true;
+    }
+    else {
+        elHamburgerMenu.classList.remove('open__menu');
+        elOpenMenu = false;
+    }
+})
 
 films.forEach(film => {
     film.genres.forEach(genre => {
@@ -96,11 +108,22 @@ function renderFilms( arr, element) {
 }
 renderFilms(films, elFilmList);
 
+let elFormBtnSubmit = false;
+
 elForm.addEventListener('submit', evt => {
     evt.preventDefault();
+    if (!elFormBtnSubmit) {
+        elFormBtn.classList.add('form__btn--animation');
+        elFormBtnSubmit = true;
+    }
+    else {
+        elFormBtn.classList.remove('form__btn--animation');
+        elFormBtnSubmit = false;
+    }
+
     const elGenreSelectValue = elGenreSelect.value,
-    elTitleSearchValue = elTitleSearch.value.trim(),
-    newRegExp = new RegExp(elTitleSearchValue, 'gi');
+        elTitleSearchValue = elTitleSearch.value.trim(),
+        newRegExp = new RegExp(elTitleSearchValue, 'gi');
     
     let selectedFilms = [];
     if (elGenreSelectValue === 'All') {
@@ -111,19 +134,5 @@ elForm.addEventListener('submit', evt => {
     }
 
     selectedFilms.sort(sortFilms[elSortSelect.value]);
-    console.log(sortFilms[elSortSelect.value]);
     renderFilms(selectedFilms, elFilmList);
-})
-
-let elOpenMenu = false;
-
-elHamburgerMenu.addEventListener('click', () => {
-    if (!elOpenMenu) {
-        elHamburgerMenu.classList.add('open__menu');
-        elOpenMenu = true;
-    }
-    else {
-        elHamburgerMenu.classList.remove('open__menu');
-        elOpenMenu = false;
-    }
 })
