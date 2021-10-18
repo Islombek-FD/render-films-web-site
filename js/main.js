@@ -4,6 +4,7 @@ const elForm = document.querySelector('.form'),
     elSortSelect = document.querySelector('.form__letter-select'),
     elFormBtn = document.querySelector('.form__btn'),
     elFilmList = document.querySelector('.films__list'),
+    elFilmTemplate = document.querySelector('.film__item-template').content,
     elHamburgerMenu = document.querySelector('.hamburger__menu');
 
 function normalizeDate(format) {
@@ -63,48 +64,31 @@ const sortFilms = {
     3: (a, b) => a.release_date - b.release_date,
 }
 
-function renderFilms( arr, element) {
-    element.innerHTML = null;
-    arr.forEach(film => {
-        const elFilmItem = document.createElement('li'),
-        elFilmTitle = document.createElement('h3'),
-        elFilmImg = document.createElement('img'),
-        elFilmInfo = document.createElement('p'),
-        elGenresTitle = document.createElement('p'), 
-        elGenresList = document.createElement('ul'),
-        elFilmDate = document.createElement('time');
+function renderFilms( arr, node) {
+    node.innerHTML = null;
 
-        elFilmItem.setAttribute('class', 'film__item');
-        elFilmTitle.setAttribute('class', 'film__title');
-        elFilmImg.setAttribute('class', 'film__img');
-        elFilmInfo.setAttribute('class', 'film__description');
-        elGenresTitle.setAttribute('class', 'film__genres-title');
-        elGenresList.setAttribute('class', 'film__genres-list');
-        elFilmDate.setAttribute('class', 'film__date');
-        
-        elFilmTitle.textContent = film.title.split(' ').slice(0, 3).join(' ');
-        elFilmImg.setAttribute('src', film.poster);
-        elFilmImg.setAttribute('width', 240);
-        elFilmImg.setAttribute('height', 200);
-        elFilmInfo.textContent = film.overview.split(' ').slice(0, 10).join(' '); 
-        elGenresTitle.textContent = 'Genres type';
+    const filmsFragment = document.createDocumentFragment();
+
+    arr.forEach(film => {
+        const elFilmTemplateClone = elFilmTemplate.cloneNode(true);
+
+        elFilmTemplateClone.querySelector('.film__title').textContent = film.title.split(' ').slice(0, 3).join(' ');
+        elFilmTemplateClone.querySelector('.film__img').src = film.poster;
+        elFilmTemplateClone.querySelector('.film__img').alt = `${film.title} film image`;
+        elFilmTemplateClone.querySelector('.film__description').textContent = film.overview.split(' ').slice(0, 10).join(' ');  
+
         film.genres.forEach(genre => {
             const elGenreItem = document.createElement('li');
             elGenreItem.setAttribute('class', 'film__genre-item');
             elGenreItem.textContent = genre;
-            elGenresList.appendChild(elGenreItem);
+            elFilmTemplateClone.querySelector('.film__genres-list').appendChild(elGenreItem);
         })
-        elFilmDate.textContent = normalizeDate(film.release_date);
+        elFilmTemplateClone.querySelector('.film__date').textContent = normalizeDate(film.release_date);
         
-        elFilmItem.appendChild(elFilmTitle);
-        elFilmItem.appendChild(elFilmImg);
-        elFilmItem.appendChild(elFilmInfo);
-        elFilmItem.appendChild(elGenresTitle);
-        elFilmItem.appendChild(elGenresList);
-        elFilmItem.appendChild(elFilmDate);
-        
-        element.appendChild(elFilmItem);
+        filmsFragment.appendChild(elFilmTemplateClone);
     })
+
+    node.appendChild(filmsFragment);
 }
 renderFilms(films, elFilmList);
 
